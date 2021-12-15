@@ -27,8 +27,57 @@
         </nav>
     </header>
 
-    <main class="container-xl mt-4">
-
+    <main class="book container-xl mb-5">
+        <div class="table-content card h-auto">
+            <div class="table-head px-4 pt-3 pb-1 border-bottom">
+                <h1>Book List</h1>
+            </div>
+            <div class="table-data p-4">
+                <button class="btn btn-primary float-end mb-3" data-bs-toggle="modal" data-bs-target="#tambah">Tambah Buku</button>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Id Buku</th>
+                            <th scope="col">Judul Buku</th>
+                            <th scope="col">Kategori</th>
+                            <th scope="col">Pengarang</th>
+                            <th scope="col">Penerbit</th>
+                            <th scope="col">Opsi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td class="datalist">BK013</td>
+                            <td class="datalist">Dermaga Biru</td>
+                            <td class="datalist">Karya Sastra</td>
+                            <td class="datalist">Sutejo</td>
+                            <td class="datalist">Media Cipta</td>
+                            <td class="d-flex gap-1">
+                                <button class="btn btn-edit w-50" data-bs-toggle="modal" data-bs-target="#edit">Edit</button>
+                                <button class="btn btn-hapus w-50" data-bs-toggle="modal" data-bs-target="#hapus">Hapus</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <nav class="pagination-head h-auto">
+                    <ul class="pagination">
+                        <li class="page-item disabled">
+                            <a class="page-link">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </main>
 
     <footer>
@@ -40,14 +89,10 @@
                         sekedar mencari refrensi, disini anda dapat membaca bahkan melakukan peminjaman buku secara
                         online. ayo baca buku, buku adalah jendela dunia</div>
                     <div class="media-sosial">
-                        <a href="https://github.com/zikrimansyursyah" target="_blank" title="My Github"><i
-                                class="bi bi-github"></i></a>
-                        <a href="https://www.linkedin.com/in/zikrimansyursyah/" target="_blank" title="My LinkedIn"><i
-                                class="bi bi-linkedin"></i></a>
-                        <a href="https://zikrimansyursyah.com" target="_blank" title="My Portfolio"><i
-                                class="bi bi-globe"></i></a>
-                        <a href="https://www.facebook.com/zikrimansyursyah" target="_blank" title="My Facebook"><i
-                                class="bi bi-facebook"></i></a>
+                        <a href="https://github.com/zikrimansyursyah" target="_blank" title="My Github"><i class="bi bi-github"></i></a>
+                        <a href="https://www.linkedin.com/in/zikrimansyursyah/" target="_blank" title="My LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://zikrimansyursyah.com" target="_blank" title="My Portfolio"><i class="bi bi-globe"></i></a>
+                        <a href="https://www.facebook.com/zikrimansyursyah" target="_blank" title="My Facebook"><i class="bi bi-facebook"></i></a>
                     </div>
                 </div>
                 <div class="ft-content">
@@ -68,6 +113,105 @@
             </div>
         </div>
     </footer>
+
+    <!-- modal tambah -->
+    <div class="modal" id="tambah" tabindex="-1">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Buku</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4 py-4">
+                    <form action="POST">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="id_buku">
+                            <label for="id_buku">ID Buku</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="judul_buku">
+                            <label for="judul_buku">Judul Buku</label>
+                        </div>
+                        <div class="kategori input-group mb-3">
+                            <select class="form-select" id="kategori">
+                                <option selected class="title">Kategori</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="pengarang">
+                            <label for="pengarang">Pengarang</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="penerbit">
+                            <label for="penerbit">Penerbit</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary float-end">Simpan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal edit -->
+    <div class="modal" id="edit" tabindex="-1">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Buku</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4 py-4">
+                    <form action="POST">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="id_buku">
+                            <label for="id_buku">ID Buku</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="judul_buku">
+                            <label for="judul_buku">Judul Buku</label>
+                        </div>
+                        <div class="kategori input-group mb-3">
+                            <select class="form-select" id="kategori">
+                                <option selected class="title">Kategori</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="pengarang">
+                            <label for="pengarang">Pengarang</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="penerbit">
+                            <label for="penerbit">Penerbit</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary float-end">Simpan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal hapus -->
+    <div class="modal" id="hapus" tabindex="-1">
+        <div class="action-hapus modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Hapus Buku?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4 py-4 text-center">
+                    <button class="btn btn-hapus">Hapus</button>
+                    <button class="btn btn-cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="./assets/js/bootstrap.bundle.min.js"></script>
 </body>
 

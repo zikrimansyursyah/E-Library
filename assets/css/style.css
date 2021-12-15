@@ -25,9 +25,46 @@ nav {
     box-shadow: 0px 5px 20px -3px rgba(0,0,0,0.2);
 }
 
+td, th {
+    text-align: center;
+}
+
+.datalist, tbody tr th {
+    padding-top: 15px !important;
+}
+
+.btn-edit {
+    background-color: #e7f3fc;
+    border: 1px solid #6698be;
+}
+
+.btn-edit:hover {
+    background-color: #6698be;
+    color: white;
+}
+
+.btn-hapus {
+    background-color: #F4C7AB;
+    border: 1px solid #f08358;
+}
+
+.btn-hapus:hover {
+    background-color: #f08358;
+}
+
 .btn-primary {
     background-color: rgb(31,41,55);
     border: none;
+}
+
+.btn-cancel {
+    background-color: rgb(230, 228, 228);
+    border: 1px solid rgb(134, 134, 134);
+}
+
+.btn-cancel:hover {
+    background-color: rgb(134, 134, 134);
+    color: white;    
 }
 
 .logo {
@@ -177,4 +214,55 @@ footer {
     height: 3rem;
     background-color: #212121;
     color: #ccc;
+}
+
+.book {
+    margin-top: 6rem;
+}
+
+.table-content {
+    border-radius: 0.5rem;
+}
+
+.table-head {
+    background-color: #e7f3fc;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+.table-head h1 {
+    font-size: 20px;
+    font-weight: 400;
+    color: #286a9c;
+}
+
+.pagination-head {
+    background-color: white;
+    box-shadow: none;
+    margin-bottom: 0px;
+}
+
+.page-link {
+    color: #212121;
+}
+
+.page-item.active .page-link{
+    background-color: #e7f3fc;
+    border-color: rgb(219, 219, 219);
+    color: #212121;
+}
+
+.kategori {
+    height: 3.3rem;
+    font-size: 14px;
+    border-color: #ced4da;
+}
+
+.kategori .title {
+    color: #e7f3fc;
+    font-size: 14px;
+}
+
+.action-hapus {
+    width: 20rem;
 }
