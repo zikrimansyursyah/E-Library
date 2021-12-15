@@ -24,20 +24,21 @@
                 <a href="./member.html" class="menu-list px-3 py-1">Member</a>
                 <a href="./transaction.html" class="menu-list px-3 py-1">Transaction</a>
             </div>
-            <button class="btn btn-login px-5" data-bs-toggle="modal" data-bs-target="#login">Login</button>
         </nav>
         <div class="hero">
             <div class="container-xl d-flex h-100">
                 <div class="headline d-flex flex-column justify-content-center">
                     <h1 class="headline-title lh-base fw-bold">Read your Favourite</h1>
-                    <h1 class="headline-title lh-base fw-bold">Book { <span><img src="./assets/img/book.png" alt="" width="50px"></span> } Here. <span><img
-                                src="./assets/img/arrow.png" alt="" width="40px"></span></h1>
+                    <h1 class="headline-title lh-base fw-bold">Book { <span><img src="./assets/img/book.png" alt=""
+                                width="50px"></span> } Here. <span><img src="./assets/img/arrow.png" alt=""
+                                width="40px"></span></h1>
                     <div class="headline-subtitle">Buku adalah jendela dunia di mana kita bisa melihat isi dunia tanpa
                         melakukan perjalanan, hanya cukup membaca sebuah halaman</div>
                     <div class="card search-card w-100 mt-4 p-3">
                         <div class="search-input w-100 h-100 p-1 d-flex">
                             <input type="text" class="input-search flex-grow-1" placeholder="Search anything you want">
-                            <button type="button" class="btn btn-primary btn-search"><i class="bi bi-search me-2"></i>Search</button>
+                            <button type="button" class="btn btn-primary btn-search"><i
+                                    class="bi bi-search me-2"></i>Search</button>
                         </div>
                     </div>
                 </div>
@@ -79,10 +80,14 @@
                         sekedar mencari refrensi, disini anda dapat membaca bahkan melakukan peminjaman buku secara
                         online. ayo baca buku, buku adalah jendela dunia</div>
                     <div class="media-sosial">
-                        <a href="https://github.com/zikrimansyursyah" target="_blank" title="My Github"><i class="bi bi-github"></i></a>
-                        <a href="https://www.linkedin.com/in/zikrimansyursyah/" target="_blank" title="My LinkedIn"><i class="bi bi-linkedin"></i></a>
-                        <a href="https://zikrimansyursyah.com" target="_blank" title="My Portfolio"><i class="bi bi-globe"></i></a>
-                        <a href="https://www.facebook.com/zikrimansyursyah" target="_blank" title="My Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="https://github.com/zikrimansyursyah" target="_blank" title="My Github"><i
+                                class="bi bi-github"></i></a>
+                        <a href="https://www.linkedin.com/in/zikrimansyursyah/" target="_blank" title="My LinkedIn"><i
+                                class="bi bi-linkedin"></i></a>
+                        <a href="https://zikrimansyursyah.com" target="_blank" title="My Portfolio"><i
+                                class="bi bi-globe"></i></a>
+                        <a href="https://www.facebook.com/zikrimansyursyah" target="_blank" title="My Facebook"><i
+                                class="bi bi-facebook"></i></a>
                     </div>
                 </div>
                 <div class="ft-content">
@@ -103,33 +108,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- modal Login -->
-    <div class="modal" id="login" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Login</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body px-4 py-4 text-center">
-                    <h3 class="mb-4">Welcome Back!</h3>
-                    <form method="POST" action="cek_login.php">
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="id_buku">
-                            <label for="id_buku">Username</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="judul_buku">
-                            <label for="judul_buku">Password</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary float-end">Simpan</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script src="./assets/js/bootstrap.bundle.min.js"></script>
 </body>
 

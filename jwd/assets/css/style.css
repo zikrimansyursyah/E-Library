@@ -274,3 +274,22 @@ footer {
 .btn-login:hover {
     background-color: #f1cb3e;
 }
+
+.login-first {
+    height: 100vh;
+    width: 100vw;
+    background-image: url(../img/403.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: contain;
+}
+
+.back-home {
+    background-color: #FCE38A;
+    color: #212121;
+    border-radius: 1rem;
+}
+
+.back-home:hover {
+    background-color: #f1cb3e;
+}
