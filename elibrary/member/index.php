@@ -37,38 +37,44 @@ if (!isset($_SESSION['sesi'])) {
     </nav>
   </header>
 
-  <main class="book container-xl mb-5">
+  <main id="book" class="book container-xl mb-5">
     <div class="table-content card h-auto">
       <div class="table-head px-4 pt-3 pb-1 border-bottom">
-        <h1>Book List</h1>
+        <h1>Member List</h1>
       </div>
       <div class="table-data p-4">
-        <button class="btn btn-primary float-end mb-3" data-bs-toggle="modal" data-bs-target="#tambah">Tambah Buku</button>
+        <button class="btn btn-primary float-end mb-3" data-bs-toggle="modal" data-bs-target="#tambah">Tambah Anggota</button>
         <table class="table table-bordered table-hover">
           <thead>
             <tr>
               <th scope="col">No</th>
-              <th scope="col">Id Buku</th>
-              <th scope="col">Judul Buku</th>
-              <th scope="col">Kategori</th>
-              <th scope="col">Pengarang</th>
-              <th scope="col">Penerbit</th>
+              <th scope="col">Id Anggota</th>
+              <th scope="col">Nama</th>
+              <th scope="col">Jenis Kelamin</th>
+              <th scope="col">Alamat</th>
+              <th scope="col">Status</th>
               <th scope="col">Opsi</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td class="datalist">BK013</td>
-              <td class="datalist">Dermaga Biru</td>
-              <td class="datalist">Karya Sastra</td>
-              <td class="datalist">Sutejo</td>
-              <td class="datalist">Media Cipta</td>
-              <td class="d-flex gap-1">
-                <button class="btn btn-edit w-50" data-bs-toggle="modal" data-bs-target="#edit">Edit</button>
-                <button class="btn btn-hapus w-50" data-bs-toggle="modal" data-bs-target="#hapus">Hapus</button>
-              </td>
-            </tr>
+            <?php
+            $no = 1;
+            $query = mysqli_query($conn, "SELECT * FROM tbanggota;");
+            while ($data = mysqli_fetch_array($query)) {
+            ?>
+              <tr>
+                <th scope="row"><?php echo $no++ ?></th>
+                <td class="datalist"><?php echo $data['idanggota'] ?></td>
+                <td class="datalist"><?php echo $data['nama'] ?></td>
+                <td class="datalist"><?php echo $data['jeniskelamin'] ?></td>
+                <td class="datalist"><?php echo $data['alamat'] ?></td>
+                <td class="datalist"><?php echo $data['status'] ?></td>
+                <td class="d-flex gap-1">
+                  <a class="btn btn-edit w-50" data-bs-toggle="modal" data-bs-target="#edit">Edit</a>
+                  <a onclick="setParams('<?php echo $data['idanggota'] ?>')" class="btn btn-hapus w-50" data-bs-toggle="modal" data-bs-target="#hapus">Hapus</a>
+                </td>
+              </tr>
+            <?php } ?>
           </tbody>
         </table>
         <nav class="pagination-head h-auto">
@@ -76,8 +82,8 @@ if (!isset($_SESSION['sesi'])) {
             <li class="page-item disabled">
               <a class="page-link">Previous</a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item active" aria-current="page">
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item" aria-current="page">
               <a class="page-link" href="#">2</a>
             </li>
             <li class="page-item"><a class="page-link" href="#">3</a></li>
@@ -129,36 +135,36 @@ if (!isset($_SESSION['sesi'])) {
     <div class="modal-dialog  modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Tambah Buku</h5>
+          <h5 class="modal-title">Tambah Anggota</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body px-4 py-4">
-          <form action="POST">
+          <form method="POST" action="../services/addMember.php">
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="id_buku">
-              <label for="id_buku">ID Buku</label>
+              <input type="text" class="form-control" id="idanggota" name="idanggota">
+              <label for="idanggota">ID Anggota</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="judul_buku">
-              <label for="judul_buku">Judul Buku</label>
+              <input type="text" class="form-control" id="nama" name="nama">
+              <label for="nama">Nama</label>
             </div>
             <div class="kategori input-group mb-3">
-              <select class="form-select" id="kategori">
-                <option selected class="title">Kategori</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+              <select class="form-select" id="jeniskelamin" name="jeniskelamin">
+                <option selected class="title">Jenis Kelamin</option>
+                <option value="Pria">Pria</option>
+                <option value="Wanita">Wanita</option>
+                <option value="Tidak Memilih">Tidak Memilih</option>
               </select>
             </div>
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="pengarang">
-              <label for="pengarang">Pengarang</label>
+              <input type="text" class="form-control" id="alamat" name="alamat">
+              <label for="alamat">Alamat</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="penerbit">
-              <label for="penerbit">Penerbit</label>
+              <input type="text" class="form-control" id="status" name="status">
+              <label for="status">Status</label>
             </div>
-            <button type="submit" class="btn btn-primary float-end">Simpan</button>
+            <button type="submit" class="btn btn-primary float-end" name="submit">Simpan</button>
           </form>
         </div>
       </div>
@@ -170,7 +176,7 @@ if (!isset($_SESSION['sesi'])) {
     <div class="modal-dialog  modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Edit Buku</h5>
+          <h5 class="modal-title">Edit Anggota</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body px-4 py-4">
@@ -211,18 +217,23 @@ if (!isset($_SESSION['sesi'])) {
     <div class="action-hapus modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Hapus Buku?</h5>
+          <h5 class="modal-title">Hapus Anggota?</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body px-4 py-4 text-center">
-          <button class="btn btn-hapus">Hapus</button>
-          <button class="btn btn-cancel">Cancel</button>
+          <a id="btn-hapus" class="btn btn-hapus" href="">Hapus</a>
+          <button class="btn btn-cancel" data-bs-dismiss="modal">Cancel</button>
         </div>
       </div>
     </div>
   </div>
 
   <script src="../assets/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function setParams(id) {
+      document.getElementById("btn-hapus").setAttribute("href", `../services/deleteMember.php?id=${id}`)
+    }
+  </script>
 </body>
 
 </html>

@@ -37,38 +37,44 @@ if (!isset($_SESSION['sesi'])) {
     </nav>
   </header>
 
-  <main class="book container-xl mb-5">
+  <main id="book" class="book container-xl mb-5">
     <div class="table-content card h-auto">
       <div class="table-head px-4 pt-3 pb-1 border-bottom">
-        <h1>Book List</h1>
+        <h1>Transaction List</h1>
       </div>
       <div class="table-data p-4">
-        <button class="btn btn-primary float-end mb-3" data-bs-toggle="modal" data-bs-target="#tambah">Tambah Buku</button>
+        <button class="btn btn-primary float-end mb-3" data-bs-toggle="modal" data-bs-target="#tambah">Tambah Transaksi</button>
         <table class="table table-bordered table-hover">
           <thead>
             <tr>
               <th scope="col">No</th>
+              <th scope="col">Id Transaksi</th>
+              <th scope="col">Id Anggota</th>
               <th scope="col">Id Buku</th>
-              <th scope="col">Judul Buku</th>
-              <th scope="col">Kategori</th>
-              <th scope="col">Pengarang</th>
-              <th scope="col">Penerbit</th>
+              <th scope="col">Tanggal Peminjaman</th>
+              <th scope="col">Tanggal Pengembalian</th>
               <th scope="col">Opsi</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td class="datalist">BK013</td>
-              <td class="datalist">Dermaga Biru</td>
-              <td class="datalist">Karya Sastra</td>
-              <td class="datalist">Sutejo</td>
-              <td class="datalist">Media Cipta</td>
-              <td class="d-flex gap-1">
-                <button class="btn btn-edit w-50" data-bs-toggle="modal" data-bs-target="#edit">Edit</button>
-                <button class="btn btn-hapus w-50" data-bs-toggle="modal" data-bs-target="#hapus">Hapus</button>
-              </td>
-            </tr>
+            <?php
+            $no = 1;
+            $query = mysqli_query($conn, "SELECT * FROM transaksi;");
+            while ($data = mysqli_fetch_array($query)) {
+            ?>
+              <tr>
+                <th scope="row"><?php echo $no++ ?></th>
+                <td class="datalist"><?php echo $data['id_transaksi'] ?></td>
+                <td class="datalist"><?php echo $data['id_anggota'] ?></td>
+                <td class="datalist"><?php echo $data['id_buku'] ?></td>
+                <td class="datalist"><?php echo $data['tgl_peminjaman'] ?></td>
+                <td class="datalist"><?php echo $data['tgl_pengembalian'] ?></td>
+                <td class="d-flex gap-1">
+                  <a class="btn btn-edit w-50" data-bs-toggle="modal" data-bs-target="#edit">Edit</a>
+                  <a onclick="setParams('<?php echo $data['id_transaksi'] ?>')" class="btn btn-hapus w-50" data-bs-toggle="modal" data-bs-target="#hapus">Hapus</a>
+                </td>
+              </tr>
+            <?php } ?>
           </tbody>
         </table>
         <nav class="pagination-head h-auto">
@@ -76,8 +82,8 @@ if (!isset($_SESSION['sesi'])) {
             <li class="page-item disabled">
               <a class="page-link">Previous</a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item active" aria-current="page">
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item" aria-current="page">
               <a class="page-link" href="#">2</a>
             </li>
             <li class="page-item"><a class="page-link" href="#">3</a></li>
@@ -129,36 +135,32 @@ if (!isset($_SESSION['sesi'])) {
     <div class="modal-dialog  modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Tambah Buku</h5>
+          <h5 class="modal-title">Tambah Transaksi</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body px-4 py-4">
-          <form action="POST">
+          <form method="POST" action="../services/addTransaction.php">
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="id_buku">
-              <label for="id_buku">ID Buku</label>
-            </div>
-            <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="judul_buku">
-              <label for="judul_buku">Judul Buku</label>
-            </div>
-            <div class="kategori input-group mb-3">
-              <select class="form-select" id="kategori">
-                <option selected class="title">Kategori</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
+              <input type="text" class="form-control" id="id_transaksi" name="id_transaksi">
+              <label for="id_transaksi">ID Transaksi</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="pengarang">
-              <label for="pengarang">Pengarang</label>
+              <input type="text" class="form-control" id="id_anggota" name="id_anggota">
+              <label for="id_anggota">Id Anggota</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="penerbit">
-              <label for="penerbit">Penerbit</label>
+              <input type="text" class="form-control" id="id_buku" name="id_buku">
+              <label for="id_buku">Id Buku</label>
             </div>
-            <button type="submit" class="btn btn-primary float-end">Simpan</button>
+            <div class="form-floating mb-3">
+              <input type="date" class="form-control" id="tgl_peminjaman" name="tgl_peminjaman">
+              <label for="tgl_peminjaman">Tgl Peminjaman</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="date" class="form-control" id="tgl_pengembalian" name="tgl_pengembalian">
+              <label for="tgl_pengembalian">Tgl Pengembalian</label>
+            </div>
+            <button type="submit" class="btn btn-primary float-end" name="submit">Simpan</button>
           </form>
         </div>
       </div>
@@ -215,13 +217,19 @@ if (!isset($_SESSION['sesi'])) {
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body px-4 py-4 text-center">
-          <button class="btn btn-hapus">Hapus</button>
-          <button class="btn btn-cancel">Cancel</button>
+          <a id="btn-hapus" class="btn btn-hapus" href="">Hapus</a>
+          <button class="btn btn-cancel" data-bs-dismiss="modal">Cancel</button>
         </div>
       </div>
     </div>
   </div>
+
   <script src="../assets/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function setParams(id) {
+      document.getElementById("btn-hapus").setAttribute("href", `../services/deleteTransaction.php?id=${id}`)
+    }
+  </script>
 </body>
 
 </html>
